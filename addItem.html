@@ -7,26 +7,33 @@
 	<head>
 			<!--character set meta data-->
 			<meta charset="utf-8" />
-add 5 meta tags
+			<meta keywords="Peep, Friends, Contacts, Cheat Sheet" />
+			<meta description="Peep Cheat Sheet, Contacts and more" />
+			<meta name="robots" content="index, follow" />
+			<meta name="viewport" content="user-scalable=no, width=device-width" />
 
-			<!--Page Title-->
 			<title>The Peep Cheat Sheet</title>
+
 	</head>
 	<body>
 		<h1>The Peep Cheat Sheet</h1>
+
+
 		<form action="#" method="post">
 			<fieldset>
 				<legend>Peep Contact</legend>
 				<ul>
-					<li><label for="fname">First Name </label><input type="text" id="fname" /></li>
-					<li><label for="lname">Last Name </label><input type="text" id="lname" /></li>
-					<li><label for="company">Company </label><input type="text" id="company" /></li>
-					<li><label for="pnum">Phone Number </label><input type="text" id="pnum" /></li>
-					<li><label for="addy">Address </label><input type="text" id="addy" /></li>			
+					<li><label for="fname">First Name </label><input type="text" id="fname"/></li>
+					<li><label for="lname">Last Name </label><input type="text" id="lname"/></li>
+					<li><label for="company">Company </label><input type="text" id="company"/></li>
+					<li><label for="pnum">Phone Number </label><input type="text" id="pnum"/></li>
+					<li><label for="email">Email </label><input type="text" placeholder="peep@peepcheat.com" id="email"/></li>
+					<li><label for="addy">Address </label><input type="text" id="addy"/></li>			
 			</fieldset>	
 			<fieldset>
 				<legend>Peep Details</legend>
 					<ul>
+						<li><label for="bday">Birthday </label><input type="text" id="bday"/></li>
 						<li>Rock Paper Scissors?:
 							<ul>
 								<li><input type="checkbox" value="Rock" id="rock" /><label for="rock">Rock</label></li>
@@ -37,19 +44,26 @@ add 5 meta tags
 						<li>Organ Donor?
 							<ul>
 								</li><input type="radio" checked value="Yes" id="yes" name="donor" /><label for="yes">Yes</label></li>
-							</li><input type="radio" value="No" id="no" name="donor" /><label for="no">No</label></li>
+								</li><input type="radio" value="No" id="no" name="donor" /><label for="no">No</label></li>
 							</ul>
-						<li>Birthday date box</li>
-						<li>Scale of Awesomeness range</li>
-						<li><label for="quotes">Best Quotes </label><textarea id="quotes"></textarea></li>
-						<li><label for="notes">Notes </label><textarea id="notes"></textarea></li>
+						<li><label for="soa">Scale of Awesomeness </label><input type="range" name="soa" id="soa" min="1" max="10"></li>
+						<li><label for="cat">Category </label>
+							<select id="cat">
+								<option value="Good Peep">Good Peep</option>
+								<option value="Casual Peep">Casual Peep</option>
+								<option value="Fair Weather Peep">Fair Weather Peep</option>
+								<option value="Bad Peep">Bad Peep</option>
+							</select>
+						<li><label for="quotes">Best Quotes </label><br><textarea id="quotes"></textarea></li>
+						<li><label for="notes">Notes </label><br><textarea id="notes"></textarea></li>
 					</ul>
 			</fieldset>
+			<input type="submit" value="Add Peep!"/>
 		</form>
-submit button!
 
-display data
-clear stored data
+		<p>
+		<a href="#">display data</a>  <a href="#">clear stored data</a>
+		</p>
 	</body>
 
 </html>
