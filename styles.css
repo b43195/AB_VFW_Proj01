@@ -50,6 +50,6 @@ a{
 
 }
 
-.opac{
-
+.focus{
+	border: solid #00A398;
 }
