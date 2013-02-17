@@ -43,6 +43,7 @@ input{
 
 textarea{
 	border: solid black;
+	background:#FCD6FF;
 }
 a{
 	font-family: sans-serif;
@@ -52,4 +53,8 @@ a{
 
 .focus{
 	border: solid #00A398;
+}
+
+.remove{
+	display:none;
 }

@@ -14,9 +14,18 @@ var fname = document.getElementById("fname"),
 	email = document.getElementById("email"),
 	addy = document.getElementById("addy"),
 	bday = document.getElementById("bday"),
-	addPeep = document.getElementById("addPeep"),
+	soa = document.getElementById("soa"),
+	soanum = document.getElementById("soanum"),
+	quotes = document.getElementById("quotes"),
+	cat = document.getElementById("cat"),
+	notes = document.getElementById("notes"),
 	clearData = document.getElementById("cleardata"),
-	displayData = document.getElementById("displayData");
+	displayData = document.getElementById("displayData"),
+	box1,
+	box2,
+	box3,
+
+	addPeep = document.getElementById("addPeep");
 
 
 //Functions
@@ -33,34 +42,31 @@ var hasFocus = function(elmID){
 	elmID.setAttribute("class", "focus");
 }
 
-var saveData = function(){
-	var keyID = Math.floor(Math.random()*19876);
-	//gather input field data
-	//create object from input field data
-	var data = {};
-		data.fname = ["First Name", fname.value];
-		data.lname = ["Last Name", lname.value];
-		data.company = ["Company", company.value];
-		data.pnum = ["Phone Number", pnum.value];
-		data.email = ["E-Mail", email.value];
-		data.addy = ["Address", addy.value];
-	localStorage.setItem(keyID, JSON.stringify(data));
-	fname.value = "";
-	lname.value = "";
-	company.value = "";
-	pnum.value = "";
-	email.value = "";
-	addy.value = "";
-	bday.value = "";
-	scroll(0,0);
-	alert("Peep Saved!");
-}
-
 var clearLocal = function(){
 	localStorage.clear();
 	document.location.reload(true);
 	alert("All data cleared.")
 
+}
+
+var getCheckBoxVal = function(){
+	var inputs = document.getElementsByTagName("input");
+	var checkBoxes = [inputs[7], inputs[8], inputs[9]]
+	if(checkBoxes[0].checked){
+		box1 = checkBoxes[0].value;
+	}else{
+		box1  = "no";
+	}
+	if(checkBoxes[1].checked){
+		box2 = checkBoxes[1].value;
+	}else{
+		box2  = "no";
+	}
+	if(checkBoxes[2].checked){
+		box3 = checkBoxes[2].value;
+	}else{
+		box3  = "no";
+	}
 }
 
 var getData = function(){
@@ -79,20 +85,69 @@ var getData = function(){
 }
 
 var getRadio = function(){
-	var radio  = document.form[0].donor;
-	for(i=0; i<radio.length; i++){
-		if(radio[i].checked){
-			var donorVal = radio[i].value;
-		}
+	var radio  = document.getElementsByTagName("input");
+	var radio1 = radio[10];
+	var radio2 = radio[11];
+	if(radio1.checked){
+		return radio1.value;
+	}else{
+		return radio2.value;
 	}
-
 }
 
 var changeCats = function(){
+	catOps = ["Friend", "Co-Worker","Family"];
+	for(i=0; i<3; i++){
+		var catName = catOps[i];
+		say(catName);
+		var catChoices = document.createElement("option");
+		catChoices.setAttribute("value", catOps[i]);
+		cat.appendChild(catChoices);
+		catChoices.innerHTML = catName;
+		
+	}
+	
+}
 
+var saveData = function(){
+	var keyID = Math.floor(Math.random()*19876);
+	var donorVal = getRadio();
+	getCheckBoxVal();
+
+	var data = {};
+		data.fname = ["First Name: ", fname.value];
+		data.lname = ["Last Name: ", lname.value];
+		data.company = ["Company: ", company.value];
+		data.pnum = ["Phone Number: ", pnum.value];
+		data.email = ["E-Mail: ", email.value];
+		data.addy = ["Address: ", addy.value];
+		data.bday = ["Birthday: ", bday.value];
+		data.rock = ["Rock: ", box1];
+		data.paper = ["Paper: ", box2];
+		data.scissor = ["Scissor: ", box3];
+		data.donor = ["Organ Donor: ", donorVal];
+		data.soa = ["Awesomeness: ", soa.value];
+		data.cat = ["Category: ", cat.value];
+		data.quotes = ["Best Quotes: ", quotes.value];
+		data.notes = ["Notes: ", notes.value]
+
+	localStorage.setItem(keyID, JSON.stringify(data));
+	fname.value = "";
+	lname.value = "";
+	company.value = "";
+	pnum.value = "";
+	email.value = "";
+	addy.value = "";
+	bday.value = "";
+	quotes.value = "";
+	notes.value = "";
+	scroll(0,0);
+	alert("Peep Saved!");
 }
 
 var showData = function(){
+	var div = document.getElementsByTagName("div");	
+	div[0].setAttribute("class","remove");
 	var addDiv = document.createElement("div");
 	addDiv.setAttribute("id","items");
 	var addList = document.createElement("ul");
@@ -119,11 +174,27 @@ var showData = function(){
 	}
 }
 
+var soaDisp = function(){
+	var soaNumber = soa.value
+	soanum.innerHTML = soaNumber;
+}
+
 
 // Script
-// getData();
+getData();
 
-/*fname.addEventListener("focus", function(){hasFocus(fname)});
+changeCats();
+
+addPeep.addEventListener("click", saveData);
+
+displayData.addEventListener("click", showData);
+
+clearData.addEventListener("click", clearLocal);
+
+soa.addEventListener("focus", soaDisp);
+
+/*
+fname.addEventListener("focus", function(){hasFocus(fname)});
 fname.addEventListener("blur", function(){hasBlurred("First Name",fname)});
 
 lname.addEventListener("focus", function(){hasFocus(lname)});
@@ -144,13 +215,3 @@ addy.addEventListener("blur", function(){hasBlurred("Address",addy)});
 bday.addEventListener("focus", function(){hasFocus(bday)});
 bday.addEventListener("blur", function(){hasBlurred("Birthday",bday)});
 */
-
-addPeep.addEventListener("click", saveData);
-
-displayData.addEventListener("click", showData);
-
-clearData.addEventListener("click", clearLocal);
-
-
-
-
